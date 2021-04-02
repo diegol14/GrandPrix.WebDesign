@@ -33,7 +33,7 @@ h6 {
 }
 
 .btn {
-    position: absolute;
+    position: relative;
     background: transparent;
     border-radius: 6px;
     font-weight: 900;
