@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+body {
+    background: #eee;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("../img/carretera.jpg");
+    background-repeat: no-repeat;
+}
+
+body:before {
+    position: absolute;
+    z-index: -1;
+    height: 20%;
+    width: 20%;
+    background-size: auto;
+}
+
+h1,
+h6 {
+    font-weight: bold;
+}
+
+#divtable {
+    position: relative;
+    float: left;
+    text-align: center;
+    /* border: 1px solid black;*/
+}
+
+.btn {
+    background: transparent;
+    border-radius: 6px;
+    font-weight: 900;
+    border: 3px solid black;
+}
+
+.cabecera {
+    text-align: center;
+}
+
+.box {
+    position: relative;
+    margin-left: 0px;
+    width: 80px;
+    height: 55px;
+    background: transparent;
+    /*display: none;*/
+    z-index: +1000;
+}
+
+#button1,
+#button2 {
+    float: left;
+    width: 100px;
+    height: 50px;
+    margin-left: 2px;
+}
+
+#reiniciar {
+    /*visibility: hidden; asi no funciona si le aplico show después*/
+    display: none;
+    /*Asi si*/
+    color: tomato;
+    border: 3px solid tomato;
+    background: transparent;
+    border-radius: 6px;
+    font-weight: 900;
+}
+
+thead,
+#reiniciar:hover {
+    background: tomato;
+    color: #eee;
+    text-decoration: none;
+}
+
+#iniciar {
+    /*visibility: hidden; asi no funciona si le aplico show después*/
+    /*display: none;*/
+    color: rgb(4, 95, 47);
+    border: 3px solid rgb(4, 95, 47);
+}
+
+#iniciar:hover {
+    background: rgb(4, 95, 47);
+    color: #eee;
+}
+
+#control {
+    /* border: 1px solid black;*/
+    text-align: center;
+    display: inline-flexbox;
+    width: 100%;
+}
+
+table {
+    border: 5px solid tomato;
+    width: 30%;
+    padding: 1px 0px;
+    margin-top: 50px;
+    text-align: center;
+    display: none;
+    text-align: center;
+    max-width: fit-content;
+    margin-left: 10px;
+    background: #eee;
+}
