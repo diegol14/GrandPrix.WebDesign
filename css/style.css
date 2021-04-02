@@ -57,12 +57,14 @@ h6 {
 }
 
 #button1,
-#button2 {
+#button2,
+#button3 {
     float: left;
-    margin-left: 2px;
+    margin-left: 10px;
 }
 
-#reiniciar {
+#reiniciar,
+#reiniciarCarrera {
     /*visibility: hidden; asi no funciona si le aplico show después*/
     display: none;
     /*Asi si*/
@@ -74,7 +76,8 @@ h6 {
 }
 
 thead,
-#reiniciar:hover {
+#reiniciar:hover,
+#reiniciarCarrera:hover {
     background: tomato;
     color: #eee;
     text-decoration: none;

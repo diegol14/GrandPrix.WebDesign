@@ -43,8 +43,6 @@ function tablaPosiciones() {
 
 function carreraShow() {
 
-
-
     for (let i = 0; i < carrera.length; i++) {
 
         let identificador = ((i + 1).toString());

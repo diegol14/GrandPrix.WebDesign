@@ -67,91 +67,111 @@ $(document).ready(function() {
                     carreraShow();
 
                     console.log(carrera.length);
+
+                    $("#iniciar").click(function() {
+                            $("#iniciar").hide(800);
+                            $("#reiniciar").show(800);
+                            do {
+                                for (let i = 0; i < carrera.length; i++) {
+                                    let identificador = ((i + 1).toString());
+
+                                    //Random y sumo la distancia
+                                    let distancia = (Math.ceil(Math.random() * 10));
+                                    console.log(distancia);
+
+                                    $("#" + (identificador)).animate({ "left": "+=" + (distancia.toString() + "px") }, 25);
+
+                                    /*Almaceno la distancia y el tiempo en el objeto*/
+                                    carrera[i].time += 0.025;
+                                    carrera[i].pxRecorridos += distancia;
+                                    console.log(carrera[i].pxRecorridos); //control de carrera
+
+                                    /* var p = $("#" + (identificador)).prop("marginLeft");
+                                       console.log(p);*/
+                                    /* let p = $("#" + (identificador)).last();
+                                    let offset = p.offset();
+                                    num = offset.left;
+                                    num2 = offset.top;
+                                    console.log(num);
+                                    console.log(num2);
+                                    num = $("#" + (identificador)).css("left");
+                                    console.log(num); Esto y marginLeft me da 0px??*/
+
+                                    //Fin de carrera y declaracion de ganador
+                                    if (carrera[i].pxRecorridos >= meta) {
+                                        ganador = carrera[i];
+                                        fin = true;
+
+                                    } //end if meta*/
+
+                                    $("#reiniciar").click(function() {
+                                        $("#reiniciar").hide(1200);
+                                        $("#iniciar").show(2500);
+                                        fin = true;
+                                        $(".box").stop();
+
+                                        for (let i = 0; i < carrera.length; i++) {
+
+                                            let identificador = ((i + 1).toString());
+                                            $("#" + (identificador)).css("left", "0");
+                                            carrera[i].pxRecorridos = 0;
+                                            carrera[i].time = 0;
+                                            setTimeout(function() {
+                                                location.reload();
+                                            }, 2)
+                                        }
+
+                                    }); //End click reiniciar
+                                }
+                            }
+                            while (!fin);
+                            console.log(ganador.nombre);
+
+                            /*Si la carrera ha terminado anuncio el ganador 
+                            y ordeno el array por pixeles recorridos descendentemente*/
+                            if (fin) {
+                                setTimeout(function() {
+                                    alert("The winner is : " + ganador.nombre);
+                                }, 9000)
+
+                                carrera.sort(function(a, b) {
+                                    if (a.pxRecorridos > b.pxRecorridos) {
+                                        return -1;
+                                    }
+                                    if (a.pxRecorridos < b.pxRecorridos) {
+                                        return 1;
+                                    }
+                                    // a must be equal to b
+                                    return 0;
+                                }); //end sort
+
+                                for (let i = 0; i < carrera.length; i++) {
+                                    console.log(
+                                        "Posicion " + (i + 1) + " : " + carrera[i].nombre + "\n"
+                                    );
+                                }
+
+                                tablaPosiciones(); //LLamo a la funcion que construye la tabla
+
+                                setTimeout(function() {
+                                    $("table").show(2200);
+                                    $(".box").hide(2200);
+                                    $("#reiniciar").hide(2200);
+                                    $("#reiniciarCarrera").show(2200);
+                                }, 9500)
+
+                                $("#reiniciarCarrera").click(function() {
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 20)
+                                })
+
+                            } //End if fin
+
+                        }) //End click iniciar
                 } //end click function
         }) //End listener seleccionar cantidad on
 
-
-    $("#iniciar").click(function() {
-            $("#iniciar").hide(1200);
-            $("#reiniciar").show(1200);
-            do {
-                for (let i = 0; i < carrera.length; i++) {
-                    let identificador = ((i + 1).toString());
-
-                    //Random y sumo la distancia
-                    let distancia = (Math.ceil(Math.random() * 10));
-                    console.log(distancia);
-                    $("#" + (identificador)).animate({ "left": "+=" + (distancia.toString() + "px") }, 25);
-                    var p = $("#" + (identificador)).prop("marginLeft");
-                    console.log(p);
-
-                    /*Almaceno la distancia y el tiempo en el objeto*/
-                    carrera[i].time += 0.025;
-                    carrera[i].pxRecorridos += distancia;
-                    console.log(carrera[i].pxRecorridos); //control de carrera
-
-                    /* let p = $("#" + (identificador)).last();
-                     let offset = p.offset();
-                     num = offset.left;
-                     num2 = offset.top;
-                     console.log(num);
-                     console.log(num2);
-                     num = $("#" + (identificador)).css("left");
-                     console.log(num); Esto y marginLeft me da 0px??*/
-
-                    //Fin de carrera y declaracion de ganador
-                    if (carrera[i].pxRecorridos >= meta) {
-                        ganador = carrera[i];
-                        fin = true;
-
-                    } //end if meta*/
-                }
-            }
-            while (!fin);
-            console.log(ganador.nombre);
-
-            /*Si la carrera ha terminado anuncio el ganador 
-            y ordeno el array por pixeles recorridos descendentemente*/
-            if (fin) {
-                setTimeout(function() {
-                    alert("The winner is : " + ganador.nombre);
-                }, 9000)
-
-                carrera.sort(function(a, b) {
-                    if (a.pxRecorridos > b.pxRecorridos) {
-                        return -1;
-                    }
-                    if (a.pxRecorridos < b.pxRecorridos) {
-                        return 1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                }); //end sort
-
-                for (let i = 0; i < carrera.length; i++) {
-                    console.log(
-                        "Posicion " + (i + 1) + " : " + carrera[i].nombre + "\n"
-                    );
-                }
-
-                tablaPosiciones(); //LLamo a la funcion que construye la tabla
-
-                setTimeout(function() {
-                    $("table").show(2200);
-                    $(".box").hide(2200)
-                }, 9500)
-
-            } //End if fin
-
-        }) //End click iniciar
-
-    $("#reiniciar").click(function() {
-        $("#reiniciar").hide(2000);
-        $("#iniciar").show(2000);
-
-        location.reload(2500);
-
-    }); //End click reiniciar
 
 
 
