@@ -28,7 +28,7 @@ carrera = new Array(corredor1 = new Corredor(1, "Corr_1"),
     corredor9 = new Corredor(9, "Corr_9"));
 
 $(document).ready(function() {
-    //Genero la meta en el ancho de window -100 px
+    //Genero la meta en el ancho de window -100 
     var meta = ($(window).width() - 100);
     console.log(meta);
 
@@ -41,12 +41,10 @@ $(document).ready(function() {
                     $("#SeleccionarCantidad").hide(1200);
 
                     if (cant > 0 && cant <= 9) {
-
                         while (cant < carrera.length) {
                             corr = carrera.pop(); //Quito los coches sobrantes del array
                             console.log(corr);
                         }
-
                     } //end if cantidad
                     else { //Si le dan erroneamente al botón seleccionar
                         alert("No has seleccionado una cantidad \n de participantes")
@@ -64,9 +62,6 @@ $(document).ready(function() {
                         console.log(carrera[i].nombre = nombre_corredor);
                         console.log(carrera[i].identificador);
                         carrera[i].imagen.src = ("./img/car" + identificador + ".png");
-
-
-
                     } //end for definicion del array
 
                     carreraShow();
@@ -82,7 +77,6 @@ $(document).ready(function() {
             do {
                 for (let i = 0; i < carrera.length; i++) {
                     let identificador = ((i + 1).toString());
-
 
                     //Random y sumo la distancia
                     let distancia = (Math.ceil(Math.random() * 10));
@@ -109,7 +103,7 @@ $(document).ready(function() {
                     if (carrera[i].pxRecorridos >= meta) {
                         ganador = carrera[i];
                         fin = true;
-                        break;
+
                     } //end if meta*/
                 }
             }
