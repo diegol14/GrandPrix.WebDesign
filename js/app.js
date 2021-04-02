@@ -10,7 +10,9 @@ class Corredor {
         this.pxRecorridos = 0;
         this.time = 0;
         this.nombre = nombre;
-        this.imagen = "car1.png";
+        var myImage = new Image(80, 60);
+        myImage.src = "./img/car1.png";
+        this.imagen = myImage;
     }
 }
 
@@ -59,12 +61,15 @@ $(document).ready(function() {
                         nombre_corredor = prompt("Introduzaca el nombre del corredor", ("Corredor" + identificador));
 
                         //Asigno propiedades al corredor
-                        carrera[i].nombre = nombre_corredor;
-                        // carrera[i].identificador = i + 1;
-                        console.log(carrera[i].nombre);
-                        console.log(carrera[i].identificador)
+                        console.log(carrera[i].nombre = nombre_corredor);
+                        console.log(carrera[i].identificador);
+                        carrera[i].imagen.src = ("./img/car" + identificador + ".png");
+
+
 
                     } //end for definicion del array
+
+                    carreraShow();
 
                     console.log(carrera.length);
                 } //end click function
@@ -83,6 +88,8 @@ $(document).ready(function() {
                     let distancia = (Math.ceil(Math.random() * 10));
                     console.log(distancia);
                     $("#" + (identificador)).animate({ "left": "+=" + (distancia.toString() + "px") }, 25);
+                    var p = $("#" + (identificador)).prop("marginLeft");
+                    console.log(p);
 
                     /*Almaceno la distancia y el tiempo en el objeto*/
                     carrera[i].time += 0.025;
@@ -137,6 +144,7 @@ $(document).ready(function() {
 
                 setTimeout(function() {
                     $("table").show(2200);
+                    $(".box").hide(2200)
                 }, 9500)
 
             } //End if fin
