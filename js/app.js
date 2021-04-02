@@ -10,6 +10,7 @@ class Corredor {
         this.pxRecorridos = 0;
         this.time = 0;
         this.nombre = nombre;
+        this.imagen = "car1.png";
     }
 }
 
@@ -37,16 +38,12 @@ $(document).ready(function() {
                     console.log(cant);
                     $("#SeleccionarCantidad").hide(1200);
 
-                    if (cant > 0 && cant < 9) {
+                    if (cant > 0 && cant <= 9) {
 
-                        do {
+                        while (cant < carrera.length) {
                             corr = carrera.pop(); //Quito los coches sobrantes del array
                             console.log(corr);
-                        } while (cant < carrera.length)
-
-
-
-
+                        }
 
                     } //end if cantidad
                     else { //Si le dan erroneamente al botón seleccionar
@@ -136,33 +133,8 @@ $(document).ready(function() {
                     );
                 }
 
-                //Creamos la variable JQuery que albergará la tabla de posiciones
-                var tBodyNode = $('tbody');
-                for (let i = 0; i < carrera.length; i++) {
+                tablaPosiciones(); //LLamo a la funcion que construye la tabla
 
-                    let trNode = document.createElement('tr'); // Generamos la Fila
-                    tBodyNode.append(trNode); // Agregamos la fila al tbody
-                    let tdPositionNode = document.createElement('td'); //Creamos la  columna
-                    tdPositionNode.textContent = ((i + 1).toString() + "º"); // Para que las posiciones empiecen en 1
-                    trNode.append(tdPositionNode); // Agregamos la columna posicion a la fila
-
-                    let tdNombreNode = document.createElement('td');
-                    tdNombreNode.textContent = carrera[i].nombre;
-                    trNode.append(tdNombreNode); // Agregamos la columna nombre a la fila
-
-                    let tdIdNode = document.createElement('td');
-                    tdIdNode.textContent = carrera[i].identificador;
-                    trNode.append(tdIdNode); // Agregamos la columna nombre a la fila
-
-                    let tdPxRecorridos = document.createElement('td');
-                    tdPxRecorridos.textContent = (carrera[i].pxRecorridos) + " px";
-                    trNode.append(tdPxRecorridos); // Agregamos la columna pxRecorridos a la fila
-
-                    let tdVelocidad = document.createElement('td');
-                    tdVelocidad.textContent = (carrera[i].pxRecorridos / carrera[i].time).toFixed(3) + " px/s";
-                    trNode.append(tdVelocidad); // Agregamos la columna nombre a la fila
-
-                }
                 setTimeout(function() {
                     $("table").show(2200);
                 }, 9500)
@@ -179,11 +151,7 @@ $(document).ready(function() {
 
     }); //End click reiniciar
 
-    $("a[rel='Tabladeposiciones']").click(function() {
-        var caracteristicas = "height=400,width=600,scrollTo,resizable=1,scrollbars=1,location=0";
-        nueva = window.open(this.href, 'Popup', caracteristicas);
-        return false;
-    });
+
 
 
 
